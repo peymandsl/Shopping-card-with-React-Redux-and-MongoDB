@@ -1,0 +1,54 @@
+.cart{
+    margin: 1rem;
+    padding: 1rem;
+    display: flex;
+}
+.cartHeader{
+    border-bottom: .1rem #c0c0c0 solid;
+}
+.cartItems{
+    padding: 0;
+    width: 100%;
+    list-style-type: none;
+}
+.cartItems img{
+    width: 5rem;
+}
+.cartItems li{
+    display: flex;
+}
+
+.cartItems li div{
+    padding: .5rem;
+}
+.cartItems li div:last-child{
+    flex:1;
+}
+.right{
+    text-align: right;
+}
+.btn{
+    padding: 1rem;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 0.1rem #c0c0c0 solid;
+}
+.btn:hover{
+    border: .1rem #808080 solid;
+}
+.primary{
+    background-color: #f0c040;
+}
+.total{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.total >div{
+    font-size: 2rem;
+}
+.total >div,
+.total >button{
+    flex: 1;
+}

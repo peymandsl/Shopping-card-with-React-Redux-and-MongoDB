@@ -3,7 +3,7 @@ import formatCurrency from '../../util'
 
 import Styles from './products.module.css'
 
-const Products = ({products, size, sort}) => {
+const Products = ({products, addToCart, size, sort}) => {
     return (
         <div>
             <ul className={Styles.products}>
@@ -16,7 +16,7 @@ const Products = ({products, size, sort}) => {
                             </a>
                             <div className={Styles.productPrice}>
                                 <div>{ formatCurrency(product.price)}</div>
-                                <button className={`${Styles.btn} ${Styles.primary}`}>Add To Cart</button>
+                                <button onClick={()=>addToCart(product)} className={`${Styles.btn} ${Styles.primary}`}>Add To Cart</button>
                             </div>
                         </div>
                     </li>
