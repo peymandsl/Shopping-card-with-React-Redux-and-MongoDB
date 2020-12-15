@@ -1,17 +1,17 @@
 import React, {useState} from 'react'
 
-import Products from './components/products'
-import Filter from './components/filter';
-import styles from './app.module.css'
 import data from './data.json'
+import styles from './app.module.css'
 import Cart from './components/cart';
+import Filter from './components/filter';
+import Products from './components/products'
 
 const App = () => {
 
   const [size, setSize] = useState("")
   const [sort, setSort] = useState("")
-  const [cartItems, setCartItems] = useState([])
   const [products, setProducts] = useState(data.products)
+  const [cartItems, setCartItems] = useState(localStorage.getItem('cardItems')?JSON.parse(localStorage.getItem('cardItems')):[])
 
   const filterProductsSize= (e)=> {
     if (e.target.value===""){
@@ -40,10 +40,14 @@ const App = () => {
    )
    setProducts(sortedProducts)
   }
+
   const removeFormCart=(product)=>{
     const cardItems = cartItems.slice()
-  setCartItems(cardItems.filter(x=>x._id !==product._id))
+    const filteredcartItems= cardItems.filter(x=>x._id !==product._id)
+  setCartItems(filteredcartItems)
+  localStorage.setItem("cardItems",JSON.stringify(filteredcartItems))
   }
+
   const addToCart =(product)=>{
     const cardItems = cartItems.slice()
     let alreadyInCart= false;
@@ -57,8 +61,12 @@ const App = () => {
       cardItems.push({...product, count:1})
     }
     setCartItems(cardItems)
+    localStorage.setItem("cardItems",JSON.stringify(cardItems))
   }
 
+  const createOrder =(order)=>{
+alert('save'+ order.name)
+  }
   return (
     <div className={styles.gridContainer}>
       <header>
@@ -76,7 +84,7 @@ const App = () => {
               <Products products={products} sort={sort} size={size} addToCart={addToCart}></Products>
             </div>
             <div className={styles.sideBar}>
-              <Cart cartItems={cartItems} removeFormCart={removeFormCart}/>
+              <Cart cartItems={cartItems} removeFormCart={removeFormCart} createOrder= {createOrder}/>
             </div>
           </div>
       </main>
